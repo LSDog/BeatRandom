@@ -1,0 +1,25 @@
+﻿id,zh,en
+TEST,测试,test
+Main/Text,"[font_size=50]随机节奏[/font_size] 作者. [url=http://github.com/LSDogX][img=52]res://image/avatar.png[/img]LSDog[/url] 
+1. 点击【启动/暂停】，然后点击【随机节拍】，即可随机生成节奏
+2. 调整节拍器的速度，【发音】可以让节拍器静音
+3.【循环】会一直重复当前节奏，而【行进】会随机下一个节奏","[font_size=50]BeatRandom[/font_size] by. [url=http://github.com/LSDogX][img=52]res://image/avatar.png[/img]LSDog[/url] 
+1. Click【Start/Pause】, then【RdmBeat】, now you can have random beats
+2. Adjust the speed of metronome,【Sound】can mute the metronome
+3.【Loop】means looping, and【Run】will generate new beats"
+Start/Pause,启动/暂停,Start/Pause
+Loop,循环,Loop
+Run,行进,Run
+Rdm,"随机
+节拍","Rdm
+Beat"
+Beats,拍子,Beats
+add,增,add
+sub,减,sub
+sound,发音,sound
+$BpmTest,"敲我来
+确定bpm","Beat me
+to set bpm"
+$Settings,程序设定,Settings
+$playtimes_prefix,“行进” 模式播放 [,Play [
+$playtimes_suffix,] 次,"] times in ""Run"" mode"

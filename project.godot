@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="BeatRandom"
+config/name_localized={
+"zh_CN": "随机节奏"
+}
+config/description="锻炼你的视奏能力！
+Practice your sight-reading!"
+run/main_scene="res://scene/Main.tscn"
+config/features=PackedStringArray("4.0", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/image="res://image/avatar.png"
+config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://lang/lang.en.translation", "res://lang/lang.zh.translation")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
