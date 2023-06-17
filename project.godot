@@ -18,14 +18,14 @@ config/description="锻炼你的视奏能力！
 Practice your sight-reading!"
 run/main_scene="res://scene/Main.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-boot_splash/show_image=false
-boot_splash/image="res://image/avatar.png"
+boot_splash/image="res://image/icon/icon_2048.png"
 config/icon="res://icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=4
 
 [gui]
 

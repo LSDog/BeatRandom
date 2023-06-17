@@ -222,6 +222,7 @@ offset_right = -30.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 
 [node name="Panel" type="Panel" parent="Score"]
 layout_mode = 1
@@ -241,6 +242,7 @@ anchor_bottom = 0.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -342,6 +344,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 
 [node name="Label" type="Label" parent="Settings/HBox"]
 layout_mode = 2

@@ -80,7 +80,7 @@ func _ready():
 	buttonLoop.toggled.connect(button_press.bind(buttonLoop));
 	buttonContinue.toggled.connect(button_press.bind(buttonContinue));
 	
-	spinPlayTimes.get_line_edit().focus_mode = FOCUS_NONE;
+	#spinPlayTimes.get_line_edit().focus_mode = FOCUS_NONE;
 	spinPlayTimes.prefix = tr("$playtimes_prefix");
 	spinPlayTimes.suffix = tr("$playtimes_suffix");
 	
@@ -134,7 +134,7 @@ func generate_new_beats():
 	reset_beat_play();
 
 
-func _process(delta: float):
+func _process(_delta: float):
 	
 	if !enabled: return;
 	
@@ -176,21 +176,23 @@ func reset_beat_play():
 
 func load_notes():
 	var path = "res://image/note/";
+	
 	for file_name in DirAccess.get_files_at(path):
 		
-		if file_name.ends_with(".import"): continue;
+		# 导出后只会列出.import文件, 因此只要删掉这个结尾就是可以load的原路径了
+		if !file_name.ends_with(".import"): continue;
+		file_name = file_name.substr(0, file_name.rfind("."));
 		
 		var texture := load(path + file_name);
 		var total_time := 0.0;
 		var beat_time := [];
 		
-		var prev_time :float = 0.0;
 		var add_time :float = 0.0;
 		
 		for one_note in file_name.substr(0, file_name.rfind(".")).split("_"):
 			
 			var number_string := "";
-			var end_string :String;
+			var end_string :String = "";
 			
 			for word in one_note.split():
 				if word.is_valid_int():
@@ -206,13 +208,11 @@ func load_notes():
 			if end_string != "r": # 如果不是 rest 休止, 这个音符算(上一个音符结束后)发音
 				beat_time.append(add_time);
 			add_time += time;
-			
-			prev_time = time;
 		
-		var name = file_name.substr(0, file_name.rfind("."));
-		var note = Note.new(name, total_time, beat_time, texture);
+		file_name = file_name.substr(0, file_name.rfind("."));
+		var note = Note.new(file_name, total_time, beat_time, texture);
 		
-		notes[name] = note;
+		notes[file_name] = note;
 		
 		var same_total_time_notes = length_notes.get(total_time);
 		if same_total_time_notes == null:
@@ -241,9 +241,9 @@ func play_sound(stream: AudioStream, volume: float = 0, pitch: float = 1, bus: S
 	player.play();
 
 ## 震动动画
-func beat_animate(node: CanvasItem, scale: float = 1.1, time: float = 0.5):
-	var v_scale = Vector2(scale, scale);
-	node.scale = v_scale;
+func beat_animate(node: CanvasItem, _scale: float = 1.1, time: float = 0.5):
+	var v_scale = Vector2(_scale, _scale);
+	node._scale = v_scale;
 	node.queue_redraw();
 	var tween = node.create_tween();
 	tween.tween_property(node, "scale", Vector2(1,1), time

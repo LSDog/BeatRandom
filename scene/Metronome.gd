@@ -40,9 +40,9 @@ func _ready() -> void:
 	
 	lineEdit_bpm.text_changed.connect(lineEdit_bpm_text_changed);
 	slider_bpm.value_changed.connect(set_bpm);
-	spinBox_beat_count.get_line_edit().focus_mode = Control.FOCUS_NONE;
+	#spinBox_beat_count.get_line_edit().focus_mode = Control.FOCUS_NONE;
 	spinBox_beat_count.value_changed.connect(func(value: float): 
-		beat_count = value; reset_beat();
+		beat_count = round(value); reset_beat();
 		spinBox_beat_count.get_line_edit().release_focus();
 	);
 	button_high.pressed.connect(func(): lineEdit_bpm_text_changed(str(lineEdit_bpm.text.to_int()+1)));
@@ -54,7 +54,7 @@ func _ready() -> void:
 	reset_beat();
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if !enabled: return;
 	
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 		beat_index = beat_index + 1 if beat_index < beat_count else 1;
 		
 		if buttonSound.button_pressed:
-			audioPlayer.pitch_scale = 1.1 if beat_index == 1 else 1;
+			audioPlayer.pitch_scale = 1.1 if beat_index == 1 else 1.0;
 			audioPlayer.volume_db = 0 if beat_index == 1 else -5;
 			audioPlayer.play();
 		
@@ -87,10 +87,10 @@ func reset_beat():
 	last_beat = get_time() - 60.0/bpm;
 
 ## 设定bpm并更新节点
-func set_bpm(bpm: int):
-	self.bpm = bpm;
-	lineEdit_bpm.text = str(bpm);
-	slider_bpm.value = bpm;
+func set_bpm(_bpm: int):
+	self.bpm = _bpm;
+	lineEdit_bpm.text = str(_bpm);
+	slider_bpm.value = _bpm;
 
 ## LineEditBpm的输入控制
 func lineEdit_bpm_text_changed(new_text: String):
